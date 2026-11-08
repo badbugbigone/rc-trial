@@ -155,6 +155,18 @@ body.admin .admin-only { display: block; }
 .bub { position: relative; border: 3px solid; border-radius: 45px; padding: 19px 32px; font-size: 36px; line-height: 1.28; max-width: 640px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .m.in .bub { background: var(--in-bg); border-color: var(--in-bd); color: var(--in-fg); }
 .m.out .bub { background: var(--out-bg); border-color: var(--out-bd); color: var(--out-fg); }
+.bub.hrq { padding: 0; }
+.bub .rq { display: flex; align-items: center; gap: 20px; padding: 20px 30px 16px 24px; }
+.bub .rav { width: 72px; height: 72px; border-radius: 50%; flex: none; object-fit: cover; background: rgba(0,0,0,.12); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 600; overflow: hidden; }
+.bub .rt { min-width: 0; max-width: 440px; display: flex; flex-direction: column; }
+.bub .rn { font-size: 34px; font-weight: 700; line-height: 1.2; }
+.bub .rx { font-size: 34px; line-height: 1.25; opacity: .55; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bub .rqd { height: 2px; background: currentColor; opacity: .2; }
+.bub .rbody { padding: 19px 32px; }
+.rqbox { display: grid; gap: 6px; }
+.rqbox .row2 { display: flex; gap: 6px; flex-wrap: wrap; }
+.rqbox input, .rqbox select { font-size: 13px; padding: 5px 8px; min-width: 0; }
+.rqbox button { padding: 4px 9px; justify-self: start; }
 .bub .tl { position: absolute; top: 3px; width: 36px; height: 32px; overflow: visible; }
 .m.in .bub .tl { left: -24px; }
 .m.out .bub .tl { right: -24px; transform: scaleX(-1); }
@@ -211,10 +223,13 @@ body.admin .admin-only { display: block; }
         <div class="fields">
           <label class="f" for="c-name">Nama kontak<input id="c-name" type="text" maxlength="40"></label>
           <label class="f" for="c-unread">Notifikasi<input id="c-unread" type="text" maxlength="4"></label>
+          <label class="f" for="c-me">Namamu (untuk balasan)<input id="c-me" type="text" maxlength="40"></label>
         </div>
         <div class="row" style="margin-top:12px">
           <button id="btn-avatar" type="button">Foto profil</button>
           <button id="btn-avatar-x" class="ghost" type="button">Hapus foto</button>
+          <button id="btn-me" type="button">Fotomu</button>
+          <button id="btn-me-x" class="ghost" type="button">Hapus fotomu</button>
         </div>
       </section>
 
@@ -407,6 +422,12 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
   addTheme("kuning", "Kuning Krem", { wp: "linear-gradient(180deg,#d9d5ce 0%,#efebe2 12%,#f3efe6 50%,#efebe2 90%,#e6e2da 100%)", hdrBg: "rgba(217,213,206,1)", hdrFg: "#3e3831", statusFg: "#ffffff", statusBg: "#3e3831", inBg: "#f7e178", inBd: "#3e3831", inFg: "#252f3a", outBg: "#ffffff", outBd: "#3e3831", outFg: "#252f3a", meta: "#3e3831", pillBg: "rgba(62,56,49,.65)", bannerBg: "rgba(62,56,49,.7)", bannerFg: "#ffffff", ftBg: "rgba(232,228,220,1)", icon: "#3e3831", compBg: "#ffffff", compBd: "#3e3831", compFg: "#8a8478", home: "#3e3831" });
   addTheme("hutan", "Hutan Senja", { wp: "linear-gradient(180deg,#4ba585 0%,#3f9d80 30%,#4ba585 45%,#f4a8a0 62%,#ff6a3d 66%,#ffb546 72%,#ffb546 100%)", hdrBg: "rgba(75,165,133,1)", hdrFg: "#ffffff", statusFg: "#ffffff", statusBg: "#2e6753", inBg: "#ffffff", inBd: "#2e6753", inFg: "#2e6753", outBg: "#fec9b6", outBd: "#2e6753", outFg: "#2e6753", meta: "#ffffff", pillBg: "rgba(46,103,83,.65)", bannerBg: "rgba(46,103,83,.65)", bannerFg: "#ffffff", ftBg: "rgba(255,181,70,1)", icon: "#2e6753", compBg: "#fbcd85", compBd: "#f4a84f", compFg: "#b9783a", home: "#ffffff" });
   addTheme("alice", "Alice", { wp: "#f0faff", hdrBg: "rgba(178,224,255,1)", hdrFg: "#ffffff", statusFg: "#ffffff", statusBg: "#87caf9", inBg: "#ffffff", inBd: "#cbe2f2", inFg: "#555555", outBg: "#b2e0ff", outBd: "rgba(178,224,255,0)", outFg: "#555555", meta: "#b2c9d9", pillBg: "rgba(135,202,249,.8)", bannerBg: "rgba(178,224,255,.95)", bannerFg: "#ffffff", ftBg: "rgba(255,255,255,1)", icon: "#87caf9", compBg: "#f1f3f5", compBd: "#dcecf7", compFg: "#aeafb0", home: "#555555" });
+  addTheme("alien", "Alien", {"wp": "#bfd667", "hdrBg": "#dbe889", "hdrFg": "#2f541b", "statusFg": "#2f541b", "statusBg": "#dbe889", "inBg": "#fffe83", "inBd": "#fffe83", "inFg": "#2f541b", "outBg": "#ffffff", "outBd": "#ffffff", "outFg": "#2f541b", "meta": "#233f1d", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#dbe889", "bannerFg": "#2f541b", "ftBg": "#a563d3", "icon": "#ffffff", "compBg": "#ffffff", "compBd": "#ffffff", "compFg": "#95a38e", "home": "#2f541b"});
+  addTheme("dumbo", "Dumbo", {"wp": "#ffffff", "hdrBg": "#e2eef4", "hdrFg": "#707778", "statusFg": "#707778", "statusBg": "#e2eef4", "inBg": "#ffffff", "inBd": "#9ba5a6", "inFg": "#707778", "outBg": "#edf5fa", "outBd": "#9ba5a6", "outFg": "#707778", "meta": "#707778", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#e2eef4", "bannerFg": "#707778", "ftBg": "#d2e4ee", "icon": "#707778", "compBg": "#edf5fa", "compBd": "#bbc5cb", "compFg": "#b5bcc0", "home": "#707778"});
+  addTheme("monsterinc", "Monster Inc", {"wp": "#ffffff", "hdrBg": "#fef9f2", "hdrFg": "#092f57", "statusFg": "#092f57", "statusBg": "#fef9f2", "inBg": "#acd99c", "inBd": "#ffffff", "inFg": "#092f57", "outBg": "#8fddec", "outBd": "#ffffff", "outFg": "#092f57", "meta": "#092f57", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#fef9f2", "bannerFg": "#092f57", "ftBg": "#ade0ea", "icon": "#092f57", "compBg": "#ffffff", "compBd": "#ffffff", "compFg": "#a2b1c0", "home": "#092f57"});
+  addTheme("winnie", "Winnie", {"wp": "#fffbf2", "hdrBg": "#ffe1a1", "hdrFg": "#000000", "statusFg": "#000000", "statusBg": "#ffe1a1", "inBg": "#fac76e", "inBd": "rgba(250,199,110,0)", "inFg": "#000000", "outBg": "#f5dd8e", "outBd": "rgba(245,221,142,0)", "outFg": "#000000", "meta": "#ab6835", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#ffe1a1", "bannerFg": "#000000", "ftBg": "#f8dea8", "icon": "#000000", "compBg": "#fff7dc", "compBd": "#e0a64b", "compFg": "#c2b89c", "home": "#000000"});
+  addTheme("donald", "Donald", {"wp": "#abc8df", "hdrBg": "#9fc1dc", "hdrFg": "#26313a", "statusFg": "#26313a", "statusBg": "#9fc1dc", "inBg": "#9bb6de", "inBd": "#26313a", "inFg": "#26313a", "outBg": "#d8e5f0", "outBd": "#26313a", "outFg": "#26313a", "meta": "#556f84", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#9fc1dc", "bannerFg": "#26313a", "ftBg": "#93a6d9", "icon": "#26313a", "compBg": "#93a6d9", "compBd": "#26313a", "compFg": "#657497", "home": "#26313a"});
+  addTheme("mickey", "Mickey Minnie", {"wp": "#ffffff", "hdrBg": "#ffffff", "hdrFg": "#333333", "statusFg": "#333333", "statusBg": "#ffffff", "inBg": "#ffffff", "inBd": "#7b7977", "inFg": "#333333", "outBg": "#d9d9d9", "outBd": "#7b7977", "outFg": "#333333", "meta": "#262626", "pillBg": "rgba(0,0,0,.4)", "bannerBg": "#ffffff", "bannerFg": "#333333", "ftBg": "#ffffff", "icon": "#333333", "compBg": "#ffffff", "compBd": "#7b7977", "compFg": "#b0b0b0", "home": "#333333"});
 
   function uid() { return Math.random().toString(36).slice(2, 9); }
 
@@ -600,7 +621,11 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
         var tv = getTheme(S.theme).v;
         var tbg = isIn ? tv["--in-bg"] : tv["--out-bg"], tbd = isIn ? tv["--in-bd"] : tv["--out-bd"];
         var tail = first ? '<svg class="tl" viewBox="0 0 34 32"><path d="M34 11Q16 9 0 0Q8 16 22 28L34 28Z" fill="' + tbg + '"/><path d="M34 11Q16 9 0 0Q8 16 22 28" fill="none" stroke="' + tbd + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "";
-        content = '<div class="bub">' + tail + emo(esc(m.text || " ")) + "</div>";
+        if (m.rq) {
+          var rsrc = m.rq.me ? S.meAvatar : S.avatar, rn = m.rq.name || "";
+          var rav = rsrc ? '<img class="rav" alt="" src="' + rsrc + '">' : '<div class="rav">' + esc(rn.trim().charAt(0).toUpperCase() || "?") + "</div>";
+          content = '<div class="bub hrq">' + tail + '<div class="rq">' + rav + '<div class="rt"><span class="rn">' + emo(esc(rn)) + '</span><span class="rx">' + emo(esc(m.rq.text || " ")) + '</span></div></div><div class="rqd"></div><div class="rbody">' + emo(esc(m.text || " ")) + "</div></div>";
+        } else content = '<div class="bub">' + tail + emo(esc(m.text || " ")) + "</div>";
       }
       if (isIn) {
         html += '<div class="m in"><div class="slot">' + (first ? avatarHtml() : "") + "</div>" + content + '<span class="mt">' + meta + "</span></div>";
@@ -839,6 +864,18 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
       '<div class="main"><input type="text" data-a="text" maxlength="24" value="' + esc(m.text) + '" aria-label="Teks stempel tanggal ' + (i + 1) + '">' +
       '<div class="meta"><span class="sp"></span><button type="button" data-a="up" aria-label="Naik">\u2191</button><button type="button" data-a="down" aria-label="Turun">\u2193</button><button type="button" data-a="del" class="danger" aria-label="Hapus">Hapus</button></div></div>';
   }
+  function rqEditor(m, i) {
+    if (!m.rq) return '<div class="rqbox"><button type="button" class="ghost" data-a="rqon">Balas pesan…</button></div>';
+    var opts = '<option value="">Ambil dari pesan sebelumnya…</option>';
+    S.msgs.forEach(function (x, j) {
+      if (j < i && x.type === "text" && x.text) opts += '<option value="' + j + '">' + esc((x.side === "in" ? "Masuk: " : "Keluar: ") + x.text.slice(0, 40)) + "</option>";
+    });
+    return '<div class="rqbox"><div class="row2"><select data-a="rqpick" aria-label="Ambil kutipan">' + opts + "</select>" +
+      '<select data-a="rqwho" aria-label="Dibalas siapa"><option value="0"' + (m.rq.me ? "" : " selected") + '>Kontak</option><option value="1"' + (m.rq.me ? " selected" : "") + ">Saya</option></select></div>" +
+      '<input type="text" data-a="rqname" placeholder="Nama yang dibalas" value="' + esc(m.rq.name) + '">' +
+      '<input type="text" data-a="rqtext" placeholder="Isi pesan yang dibalas" value="' + esc(m.rq.text) + '">' +
+      '<button type="button" class="ghost" data-a="rqoff">Hapus balasan</button></div>';
+  }
   function renderList() {
     var ul = $("msgs");
     ul.innerHTML = "";
@@ -860,7 +897,7 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
           ? '<div class="row"><img class="thumb" alt="" src="' + m.img + '" style="object-fit:contain"></div>'
           : m.type === "image"
           ? '<div class="row">' + (m.img ? '<img class="thumb" alt="" src="' + m.img + '">' : '<div class="thumb"></div>') + '<button type="button" data-a="pick">' + (m.img ? "Ganti foto" : "Pilih foto") + "</button></div>"
-          : '<textarea rows="2" data-a="text" aria-label="Isi pesan ' + (i + 1) + '">' + esc(m.text) + "</textarea>") +
+          : '<textarea rows="2" data-a="text" aria-label="Isi pesan ' + (i + 1) + '">' + esc(m.text) + "</textarea>" + rqEditor(m, i)) +
         '<div class="meta"><input type="text" data-a="time" maxlength="6" value="' + esc(m.time) + '" aria-label="Jam pesan ' + (i + 1) + '">' +
         (!isIn ? '<label class="check"><input type="checkbox" data-a="read"' + (m.read ? " checked" : "") + "> Read</label>" : "") +
         '<span class="sp"></span><button type="button" data-a="up" aria-label="Naik">↑</button><button type="button" data-a="down" aria-label="Turun">↓</button><button type="button" data-a="del" class="danger" aria-label="Hapus">Hapus</button></div></div>';
@@ -868,10 +905,19 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
         var a = e.target.getAttribute("data-a");
         if (a === "text") m.text = e.target.value;
         if (a === "time") m.time = e.target.value;
+        if (a === "rqname" && m.rq) m.rq.name = e.target.value;
+        if (a === "rqtext" && m.rq) m.rq.text = e.target.value;
         update();
       });
       li.addEventListener("change", function (e) {
-        if (e.target.getAttribute("data-a") === "read") { m.read = e.target.checked; update(); }
+        var ca = e.target.getAttribute("data-a");
+        if (ca === "read") { m.read = e.target.checked; update(); }
+        else if (ca === "rqwho" && m.rq) { m.rq.me = e.target.value === "1"; m.rq.name = m.rq.me ? (S.meName || "Kamu") : S.name; renderList(); update(); }
+        else if (ca === "rqpick" && m.rq && e.target.value !== "") {
+          var src = S.msgs[+e.target.value];
+          m.rq.text = src.text; m.rq.me = src.side === "out"; m.rq.name = m.rq.me ? (S.meName || "Kamu") : S.name;
+          renderList(); update();
+        }
       });
       li.addEventListener("click", function (e) {
         var a = e.target.getAttribute && e.target.getAttribute("data-a");
@@ -881,6 +927,8 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
         else if (a === "del") { S.msgs.splice(i, 1); renderList(); update(); }
         else if (a === "up" && i > 0) { S.msgs.splice(i - 1, 0, S.msgs.splice(i, 1)[0]); renderList(); update(); }
         else if (a === "down" && i < S.msgs.length - 1) { S.msgs.splice(i + 1, 0, S.msgs.splice(i, 1)[0]); renderList(); update(); }
+        else if (a === "rqon") { var mine = m.side === "in"; m.rq = { me: mine, name: mine ? (S.meName || "Kamu") : S.name, text: "" }; renderList(); update(); }
+        else if (a === "rqoff") { delete m.rq; renderList(); update(); }
         else if (a === "pick") { pickImage(function (d) { m.img = d; renderList(); update(); }, 900); }
       });
       ul.appendChild(li);
@@ -937,6 +985,10 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
   });
   $("btn-avatar").addEventListener("click", function () { pickImage(function (d) { S.avatar = d; update(); }, 400); });
   $("btn-avatar-x").addEventListener("click", function () { S.avatar = null; update(); });
+  $("c-me").value = S.meName || "Kamu";
+  $("c-me").addEventListener("input", function () { S.meName = this.value; update(); });
+  $("btn-me").addEventListener("click", function () { pickImage(function (d) { S.meAvatar = d; update(); }, 400); });
+  $("btn-me-x").addEventListener("click", function () { S.meAvatar = null; update(); });
   $("btn-wall").addEventListener("click", function () { pickImage(function (d) { S.wallpaper = d; update(); }, 1500); });
   $("btn-wall-x").addEventListener("click", function () { S.wallpaper = null; update(); });
 
@@ -1148,7 +1200,7 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
     im.onload = function () { FOOTOK[k] = true; renderPhone(); };
     im.src = footUrl(k);
   });
-  ["senja", "kremmerah", "hijau", "biru", "kuning", "hutan", "alice"].forEach(function (k) {
+  ["senja", "kremmerah", "hijau", "biru", "kuning", "hutan", "alice", "alien", "dumbo", "monsterinc", "winnie", "donald", "mickey"].forEach(function (k) {
     SLOTS.forEach(function (sl) {
       var im = new Image();
       im.onload = function () { ICOK[k + "-" + sl] = true; renderPhone(); };
