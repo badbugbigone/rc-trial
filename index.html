@@ -406,6 +406,7 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
   addTheme("biru", "Biru Langit", { wp: "linear-gradient(180deg,#a9c7e0 0%,#aec9e0 50%,#a8c4de 85%,#94a6d8 100%)", hdrBg: "rgba(170,199,224,1)", hdrFg: "#ffffff", statusFg: "#ffffff", statusBg: "#4a6a94", inBg: "#91b7e1", inBd: "#252f3a", inFg: "#252f3a", outBg: "#d8e4ef", outBd: "#252f3a", outFg: "#252f3a", meta: "#3f5f88", pillBg: "rgba(74,106,148,.65)", bannerBg: "rgba(74,106,148,.65)", bannerFg: "#ffffff", ftBg: "rgba(148,166,216,1)", icon: "#252f3a", compBg: "#d1e0f0", compBd: "#7488b4", compFg: "#6a7ea8", home: "#ffffff" });
   addTheme("kuning", "Kuning Krem", { wp: "linear-gradient(180deg,#d9d5ce 0%,#efebe2 12%,#f3efe6 50%,#efebe2 90%,#e6e2da 100%)", hdrBg: "rgba(217,213,206,1)", hdrFg: "#3e3831", statusFg: "#ffffff", statusBg: "#3e3831", inBg: "#f7e178", inBd: "#3e3831", inFg: "#252f3a", outBg: "#ffffff", outBd: "#3e3831", outFg: "#252f3a", meta: "#3e3831", pillBg: "rgba(62,56,49,.65)", bannerBg: "rgba(62,56,49,.7)", bannerFg: "#ffffff", ftBg: "rgba(232,228,220,1)", icon: "#3e3831", compBg: "#ffffff", compBd: "#3e3831", compFg: "#8a8478", home: "#3e3831" });
   addTheme("hutan", "Hutan Senja", { wp: "linear-gradient(180deg,#4ba585 0%,#3f9d80 30%,#4ba585 45%,#f4a8a0 62%,#ff6a3d 66%,#ffb546 72%,#ffb546 100%)", hdrBg: "rgba(75,165,133,1)", hdrFg: "#ffffff", statusFg: "#ffffff", statusBg: "#2e6753", inBg: "#ffffff", inBd: "#2e6753", inFg: "#2e6753", outBg: "#fec9b6", outBd: "#2e6753", outFg: "#2e6753", meta: "#ffffff", pillBg: "rgba(46,103,83,.65)", bannerBg: "rgba(46,103,83,.65)", bannerFg: "#ffffff", ftBg: "rgba(255,181,70,1)", icon: "#2e6753", compBg: "#fbcd85", compBd: "#f4a84f", compFg: "#b9783a", home: "#ffffff" });
+  addTheme("alice", "Alice", { wp: "#f0faff", hdrBg: "rgba(178,224,255,1)", hdrFg: "#ffffff", statusFg: "#ffffff", statusBg: "#87caf9", inBg: "#ffffff", inBd: "#cbe2f2", inFg: "#555555", outBg: "#b2e0ff", outBd: "rgba(178,224,255,0)", outFg: "#555555", meta: "#b2c9d9", pillBg: "rgba(135,202,249,.8)", bannerBg: "rgba(178,224,255,.95)", bannerFg: "#ffffff", ftBg: "rgba(255,255,255,1)", icon: "#87caf9", compBg: "#f1f3f5", compBd: "#dcecf7", compFg: "#aeafb0", home: "#555555" });
 
   function uid() { return Math.random().toString(36).slice(2, 9); }
 
@@ -1147,7 +1148,7 @@ var PACKS=[{"name": "Funny Faces", "items": ["data:image/png;base64,iVBORw0KGgoA
     im.onload = function () { FOOTOK[k] = true; renderPhone(); };
     im.src = footUrl(k);
   });
-  ["senja", "kremmerah", "hijau", "biru", "kuning", "hutan"].forEach(function (k) {
+  ["senja", "kremmerah", "hijau", "biru", "kuning", "hutan", "alice"].forEach(function (k) {
     SLOTS.forEach(function (sl) {
       var im = new Image();
       im.onload = function () { ICOK[k + "-" + sl] = true; renderPhone(); };
